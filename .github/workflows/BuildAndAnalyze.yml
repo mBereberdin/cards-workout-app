@@ -1,0 +1,21 @@
+name: Build and Analyze
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Build and analyse
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build
+        run:
+          xcodebuild clean build analyze -project "CardsWorkout.xcodeproj" -scheme "CardsWorkout" -configuration Release build CODE_SIGNING_ALLOWED=NO
+        working-directory: ./src
