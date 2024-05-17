@@ -21,10 +21,40 @@ class CardSelectionVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .systemBackground
         configureUI()
         
         startTimer()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        stop()
+    }
+    
+    // MARK: Методы
+    
+    func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(showRandomImage), userInfo: nil, repeats: true)
+    }
+    
+    @objc func restart() {
+        stop()
+        startTimer()
+    }
+    
+    @objc func stop() {
+        timer.invalidate()
+    }
+    
+    @objc func showRandomImage() {
+        cardImageView.image = cards.randomElement() ?? UIImage(named: "AS")
+    }
+    
+    @objc func presentRulesVC() {
+        present(RulesVC(), animated: true)
     }
     
     // MARK: Конфигурирование UI
@@ -86,34 +116,5 @@ class CardSelectionVC: UIViewController {
             rulesButton.trailingAnchor.constraint(equalTo: stopButton.trailingAnchor),
             rulesButton.topAnchor.constraint(equalTo: stopButton.bottomAnchor, constant: 20)
         ])
-    }
-    
-    // MARK: Методы
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        timer.invalidate()
-    }
-    
-    func startTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(showRandomImage), userInfo: nil, repeats: true)
-    }
-    
-    @objc func restart() {
-        stop()
-        startTimer()
-    }
-    
-    @objc func stop() {
-        timer.invalidate()
-    }
-    
-    @objc func showRandomImage() {
-        cardImageView.image = cards.randomElement() ?? UIImage(named: "AS")
-    }
-    
-    @objc func presentRulesVC() {
-        present(RulesVC(), animated: true)
     }
 }
