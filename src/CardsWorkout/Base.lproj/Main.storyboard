@@ -35,6 +35,9 @@
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="19"/>
                                     <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="stopButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MBs-OF-pwG"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DLr-Gd-Xjp">
                                 <rect key="frame" x="65" y="642" width="115" height="50"/>
@@ -48,6 +51,9 @@
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="19"/>
                                     <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="restartButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v97-g5-ShE"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Xt-Yg-HT8">
                                 <rect key="frame" x="210" y="642" width="115" height="50"/>
@@ -61,6 +67,9 @@
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="19"/>
                                     <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <segue destination="ien-KR-hoq" kind="presentation" id="bXt-fB-QTf"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -76,10 +85,64 @@
                             <constraint firstItem="4Xt-Yg-HT8" firstAttribute="trailing" secondItem="3Xr-91-VMg" secondAttribute="trailing" id="wsQ-rW-ASF"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cardImageView" destination="Ii1-tU-naQ" id="rgA-5U-dQh"/>
+                        <outletCollection property="buttons" destination="3Xr-91-VMg" collectionClass="NSMutableArray" id="q4Q-Ct-jlm"/>
+                        <outletCollection property="buttons" destination="DLr-Gd-Xjp" collectionClass="NSMutableArray" id="1Rx-FF-ner"/>
+                        <outletCollection property="buttons" destination="4Xt-Yg-HT8" collectionClass="NSMutableArray" id="7OY-UW-dpr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="138" y="5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="qY7-dj-PEx">
+            <objects>
+                <viewController id="ien-KR-hoq" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sIU-0h-1CH">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="834"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rules" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2N-hf-LUy">
+                                <rect key="frame" x="30" y="70" width="330" height="48"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The value of each card represents the number of exercise you do.  J = 11, Q = 12, K = 13,  A = 14" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6H-xc-BsX">
+                                <rect key="frame" x="30" y="143" width="330" height="86"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="♠️ = Push-up  ❤️ = Sit-up  ♣️ = Burpees  ♦️ = Jumping Jacks" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOW-va-tOi">
+                                <rect key="frame" x="95" y="304" width="200" height="175.66666666666663"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Yuw-Ab-4L2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rUR-Qp-k9d"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="l6H-xc-BsX" firstAttribute="top" secondItem="h2N-hf-LUy" secondAttribute="bottom" constant="25" id="0NP-bt-PHv"/>
+                            <constraint firstItem="h2N-hf-LUy" firstAttribute="top" secondItem="rUR-Qp-k9d" secondAttribute="top" constant="70" id="2Bp-BR-out"/>
+                            <constraint firstItem="QOW-va-tOi" firstAttribute="top" secondItem="l6H-xc-BsX" secondAttribute="bottom" constant="75" id="AHl-al-hCy"/>
+                            <constraint firstItem="h2N-hf-LUy" firstAttribute="leading" secondItem="rUR-Qp-k9d" secondAttribute="leading" constant="30" id="JUN-bc-nzb"/>
+                            <constraint firstItem="rUR-Qp-k9d" firstAttribute="trailing" secondItem="h2N-hf-LUy" secondAttribute="trailing" constant="30" id="NlQ-pl-f8y"/>
+                            <constraint firstItem="l6H-xc-BsX" firstAttribute="leading" secondItem="rUR-Qp-k9d" secondAttribute="leading" constant="30" id="ONK-bC-XR0"/>
+                            <constraint firstItem="QOW-va-tOi" firstAttribute="centerX" secondItem="sIU-0h-1CH" secondAttribute="centerX" id="aSN-9b-gRe"/>
+                            <constraint firstItem="rUR-Qp-k9d" firstAttribute="trailing" secondItem="l6H-xc-BsX" secondAttribute="trailing" constant="30" id="wEU-Eg-4F3"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WBe-T5-8P1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="880" y="5"/>
         </scene>
     </scenes>
     <resources>
