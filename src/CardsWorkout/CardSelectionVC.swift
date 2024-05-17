@@ -27,6 +27,8 @@ class CardSelectionVC: UIViewController {
         startTimer()
     }
     
+    // MARK: Конфигурирование UI
+    
     func configureUI() {
         configureCardImageView()
         configureStopButton()
@@ -50,6 +52,8 @@ class CardSelectionVC: UIViewController {
     func configureStopButton() {
         view.addSubview(stopButton)
         
+        stopButton.addTarget(self, action: #selector(stop), for: .touchUpInside)
+        
         NSLayoutConstraint.activate([
             stopButton.widthAnchor.constraint(equalToConstant: 260),
             stopButton.heightAnchor.constraint(equalToConstant: 50),
@@ -60,6 +64,8 @@ class CardSelectionVC: UIViewController {
     
     func configureRestartButton() {
         view.addSubview(restartButton)
+        
+        restartButton.addTarget(self, action: #selector(restart), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             restartButton.widthAnchor.constraint(equalToConstant: 115),
@@ -82,6 +88,8 @@ class CardSelectionVC: UIViewController {
         ])
     }
     
+    // MARK: Методы
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -90,6 +98,15 @@ class CardSelectionVC: UIViewController {
     
     func startTimer() {
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(showRandomImage), userInfo: nil, repeats: true)
+    }
+    
+    @objc func restart() {
+        stop()
+        startTimer()
+    }
+    
+    @objc func stop() {
+        timer.invalidate()
     }
     
     @objc func showRandomImage() {
